@@ -40,7 +40,7 @@ section_1_text_color:
 
 section_1_categories:
   default: ""
-  type: list
+  type: string
   description: "Category slugs for section 1 (comma-separated, e.g., general,support,feedback)"
 
 section_1_default_open:
@@ -71,7 +71,7 @@ section_2_text_color:
 
 section_2_categories:
   default: ""
-  type: list
+  type: string
   description: "Category slugs for section 2 (comma-separated)"
 
 section_2_default_open:
@@ -102,7 +102,7 @@ section_3_text_color:
 
 section_3_categories:
   default: ""
-  type: list
+  type: string
   description: "Category slugs for section 3 (comma-separated)"
 
 section_3_default_open:
@@ -133,7 +133,7 @@ section_4_text_color:
 
 section_4_categories:
   default: ""
-  type: list
+  type: string
   description: "Category slugs for section 4 (comma-separated)"
 
 section_4_default_open:

@@ -47,24 +47,24 @@
       transform: rotate(90deg);
     }
 
-    // Section colors using CSS custom properties
+    // Section colors with gradient fade to transparent
     .category-section-summary[data-section="1"] {
-      background: $section-1-bg-color;
+      background: linear-gradient(to right, $section-1-bg-color 0%, transparent 25%);
       color: $section-1-text-color;
     }
     
     .category-section-summary[data-section="2"] {
-      background: $section-2-bg-color;
+      background: linear-gradient(to right, $section-2-bg-color 0%, transparent 25%);
       color: $section-2-text-color;
     }
     
     .category-section-summary[data-section="3"] {
-      background: $section-3-bg-color;
+      background: linear-gradient(to right, $section-3-bg-color 0%, transparent 25%);
       color: $section-3-text-color;
     }
     
     .category-section-summary[data-section="4"] {
-      background: $section-4-bg-color;
+      background: linear-gradient(to right, $section-4-bg-color 0%, transparent 25%);
       color: $section-4-text-color;
     }
 

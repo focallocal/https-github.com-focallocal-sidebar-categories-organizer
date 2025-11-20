@@ -47,9 +47,9 @@
       transform: rotate(90deg);
     }
 
-    // Section colors with gradient fade to transparent (solid 25%, fade 25-50%)
+    // Section colors with gradient fade to transparent (solid 25%, fade 25-75%)
     .category-section-summary[data-section="1"] {
-      background: linear-gradient(to right, $section-1-bg-color 0%, $section-1-bg-color 25%, transparent 50%);
+      background: linear-gradient(to right, $section-1-bg-color 0%, $section-1-bg-color 25%, transparent 75%);
       
       .category-section-title {
         color: $section-1-text-color;
@@ -57,7 +57,7 @@
     }
     
     .category-section-summary[data-section="2"] {
-      background: linear-gradient(to right, $section-2-bg-color 0%, $section-2-bg-color 25%, transparent 50%);
+      background: linear-gradient(to right, $section-2-bg-color 0%, $section-2-bg-color 25%, transparent 75%);
       
       .category-section-title {
         color: $section-2-text-color;
@@ -65,7 +65,7 @@
     }
     
     .category-section-summary[data-section="3"] {
-      background: linear-gradient(to right, $section-3-bg-color 0%, $section-3-bg-color 25%, transparent 50%);
+      background: linear-gradient(to right, $section-3-bg-color 0%, $section-3-bg-color 25%, transparent 75%);
       
       .category-section-title {
         color: $section-3-text-color;
@@ -73,7 +73,7 @@
     }
     
     .category-section-summary[data-section="4"] {
-      background: linear-gradient(to right, $section-4-bg-color 0%, $section-4-bg-color 25%, transparent 50%);
+      background: linear-gradient(to right, $section-4-bg-color 0%, $section-4-bg-color 25%, transparent 75%);
       
       .category-section-title {
         color: $section-4-text-color;

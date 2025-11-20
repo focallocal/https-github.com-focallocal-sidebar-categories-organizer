@@ -27,8 +27,14 @@ export default apiInitializer("1.8.0", (api) => {
     const allCategories = appCtrl.site.categories;
     const currentUser = api.getCurrentUser();
     
-    // Filter categories based on user permissions
+    // Get categories to hide
+    const hiddenSlugs = settings.categories_to_hide
+      ? settings.categories_to_hide.split(",").map(s => s.trim())
+      : [];
+    
+    // Filter categories based on user permissions and hidden list
     const accessibleCategories = allCategories.filter(cat => {
+      if (hiddenSlugs.includes(cat.slug)) return false;
       if (!currentUser) return !cat.read_restricted;
       // Category is accessible if not read_restricted, or user has permission
       return true; // Discourse handles permissions in the category objects

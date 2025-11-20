@@ -19,6 +19,11 @@ use_gradient_fade:
   type: bool
   description: "Use gradient fade on section headers (solid color if disabled)"
 
+categories_to_hide:
+  default: ""
+  type: string
+  description: "Category slugs to hide from sidebar completely (comma-separated, e.g., staff-only,archive)"
+
 default_view:
   default: "custom"
   type: enum

@@ -268,6 +268,34 @@
     }
   }
 
+  // Toggle button styling (both custom and default views)
+  .sidebar-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    margin-left: auto;
+
+    &:hover {
+      background: var(--d-hover);
+    }
+  }
+
+  // Default view header styling
+  .sidebar-section[data-section-name='categories'] {
+    .sidebar-section-header {
+      display: flex;
+      align-items: center;
+      
+      .sidebar-toggle-btn {
+        margin-left: auto;
+      }
+    }
+  }
+
   // Ungrouped categories section
   #ungrouped-categories-sidebar {
     margin-top: 1em;

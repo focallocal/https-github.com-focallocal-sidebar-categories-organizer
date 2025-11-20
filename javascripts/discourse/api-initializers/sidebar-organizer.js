@@ -237,16 +237,19 @@ export default apiInitializer("1.8.0", (api) => {
   const toggleView = () => {
     const customView = document.getElementById("custom-categories-sidebar");
     const defaultSection = document.querySelector(".sidebar-section[data-section-name='categories']");
+    const defaultToggleBtn = document.getElementById("default-view-toggle-btn");
     
     if (!customView || !defaultSection) return;
 
     if (customView.style.display === "none") {
       customView.style.display = "block";
       defaultSection.style.display = "none";
+      if (defaultToggleBtn) defaultToggleBtn.style.display = "none";
       saveUserPreference("custom");
     } else {
       customView.style.display = "none";
       defaultSection.style.display = "block";
+      if (defaultToggleBtn) defaultToggleBtn.style.display = "block";
       saveUserPreference("default");
     }
   };
@@ -295,6 +298,12 @@ export default apiInitializer("1.8.0", (api) => {
       existingCustomView.remove();
     }
 
+    // Remove existing default toggle button if present
+    const existingDefaultToggle = document.getElementById("default-view-toggle-btn");
+    if (existingDefaultToggle) {
+      existingDefaultToggle.remove();
+    }
+
     // Build and insert custom view
     const customView = buildCustomCategoriesView();
     if (!customView) return;
@@ -302,11 +311,27 @@ export default apiInitializer("1.8.0", (api) => {
     // Insert after the categories section
     defaultCategoriesSection.parentNode.insertBefore(customView, defaultCategoriesSection.nextSibling);
 
+    // Add toggle button to default view header
+    if (settings.show_toggle_button) {
+      const defaultSectionHeader = defaultCategoriesSection.querySelector(".sidebar-section-header");
+      if (defaultSectionHeader) {
+        const defaultToggleBtn = document.createElement("button");
+        defaultToggleBtn.id = "default-view-toggle-btn";
+        defaultToggleBtn.className = "sidebar-toggle-btn";
+        defaultToggleBtn.innerHTML = "📂";
+        defaultToggleBtn.title = "Switch to Custom View";
+        defaultToggleBtn.onclick = toggleView;
+        defaultSectionHeader.appendChild(defaultToggleBtn);
+      }
+    }
+
     // Apply user preference
     const preference = getUserPreference();
+    const defaultToggleBtn = document.getElementById("default-view-toggle-btn");
     if (preference === "custom") {
       defaultCategoriesSection.style.display = "none";
       customView.style.display = "block";
+      if (defaultToggleBtn) defaultToggleBtn.style.display = "none";
     } else {
       defaultCategoriesSection.style.display = "block";
       customView.style.display = "none";

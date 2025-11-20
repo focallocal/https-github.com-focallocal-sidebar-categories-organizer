@@ -113,8 +113,8 @@ export default apiInitializer("1.8.0", (api) => {
         categoryLink.appendChild(linkContent);
         contentWrapper.appendChild(categoryLink);
 
-        // Add subcategories if enabled
-        if (settings.show_subcategories) {
+        // Add subcategories if enabled for this section
+        if (settings[`section_${i}_show_subcategories`]) {
           const subcategories = accessibleCategories.filter(cat => 
             cat.parent_category_id === category.id
           );
@@ -189,8 +189,9 @@ export default apiInitializer("1.8.0", (api) => {
         categoryLink.appendChild(linkContent);
         ungroupedSection.appendChild(categoryLink);
 
-        // Add subcategories if enabled
-        if (settings.show_subcategories) {
+        // Add subcategories for ungrouped (always show)
+        const showSubcats = true;
+        if (showSubcats) {
           const subcategories = accessibleCategories.filter(cat => 
             cat.parent_category_id === category.id
           );

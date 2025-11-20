@@ -14,11 +14,6 @@ show_category_badges:
   type: bool
   description: "Show colored badges next to category names"
 
-show_subcategories:
-  default: true
-  type: bool
-  description: "Show subcategories nested under their parent categories"
-
 use_gradient_fade:
   default: false
   type: bool
@@ -58,6 +53,11 @@ section_1_categories:
   type: string
   description: "Category slugs for section 1 (comma-separated, e.g., general,support,feedback)"
 
+section_1_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 1"
+
 section_1_default_open:
   default: true
   type: bool
@@ -88,6 +88,11 @@ section_2_categories:
   default: ""
   type: string
   description: "Category slugs for section 2 (comma-separated)"
+
+section_2_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 2"
 
 section_2_default_open:
   default: false
@@ -120,6 +125,11 @@ section_3_categories:
   type: string
   description: "Category slugs for section 3 (comma-separated)"
 
+section_3_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 3"
+
 section_3_default_open:
   default: false
   type: bool
@@ -150,6 +160,11 @@ section_4_categories:
   default: ""
   type: string
   description: "Category slugs for section 4 (comma-separated)"
+
+section_4_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 4"
 
 section_4_default_open:
   default: false
@@ -182,6 +197,11 @@ section_5_categories:
   type: string
   description: "Category slugs for section 5 (comma-separated)"
 
+section_5_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 5"
+
 section_5_default_open:
   default: false
   type: bool
@@ -212,6 +232,11 @@ section_6_categories:
   default: ""
   type: string
   description: "Category slugs for section 6 (comma-separated)"
+
+section_6_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 6"
 
 section_6_default_open:
   default: false
@@ -244,6 +269,11 @@ section_7_categories:
   type: string
   description: "Category slugs for section 7 (comma-separated)"
 
+section_7_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 7"
+
 section_7_default_open:
   default: false
   type: bool
@@ -274,6 +304,11 @@ section_8_categories:
   default: ""
   type: string
   description: "Category slugs for section 8 (comma-separated)"
+
+section_8_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 8"
 
 section_8_default_open:
   default: false
@@ -306,6 +341,11 @@ section_9_categories:
   type: string
   description: "Category slugs for section 9 (comma-separated)"
 
+section_9_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 9"
+
 section_9_default_open:
   default: false
   type: bool
@@ -336,6 +376,11 @@ section_10_categories:
   default: ""
   type: string
   description: "Category slugs for section 10 (comma-separated)"
+
+section_10_show_subcategories:
+  default: true
+  type: bool
+  description: "Show subcategories for section 10"
 
 section_10_default_open:
   default: false

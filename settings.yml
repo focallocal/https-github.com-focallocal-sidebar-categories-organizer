@@ -331,10 +331,10 @@ section_9_title:
   type: string
   description: "Title for section 9"
 
-section_6_bg_color:
-  default: "#f4d35e"
+section_9_bg_color:
+  default: "#00BCD4"
   type: string
-  description: "Background color for section 6"
+  description: "Background color for section 9"
 
 section_9_text_color:
   default: "#FFFFFF"

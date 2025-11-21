@@ -27,10 +27,14 @@ export default apiInitializer("1.8.0", (api) => {
     const allCategories = appCtrl.site.categories;
     const currentUser = api.getCurrentUser();
     
-    // Get categories to hide
-    const hiddenSlugs = settings.categories_to_hide
-      ? settings.categories_to_hide.split(",").map(s => s.trim()).filter(s => s !== "")
-      : [];
+    // Get categories to hide - handle list format (array of IDs)
+    let hiddenSlugs = [];
+    if (settings.categories_to_hide && Array.isArray(settings.categories_to_hide)) {
+      hiddenSlugs = settings.categories_to_hide
+        .map(id => allCategories.find(cat => cat.id === parseInt(id)))
+        .filter(Boolean)
+        .map(cat => cat.slug);
+    }
     
     // Filter categories based on user permissions and hidden list
     // Note: site.categories is already filtered by Discourse based on current user permissions
@@ -58,16 +62,18 @@ export default apiInitializer("1.8.0", (api) => {
       if (!enabled) continue;
 
       const title = settings[`section_${i}_title`];
-      const categorySlugs = settings[`section_${i}_categories`];
+      const categoriesData = settings[`section_${i}_categories`];
       const defaultOpen = settings[`section_${i}_default_open`];
       
-      if (!categorySlugs || categorySlugs.trim() === "") continue;
+      if (!categoriesData || (Array.isArray(categoriesData) && categoriesData.length === 0)) continue;
 
-      // Get categories for this section
-      const slugArray = categorySlugs.split(",").map(s => s.trim());
-      const sectionCategories = slugArray
-        .map(slug => accessibleCategories.find(cat => cat.slug === slug))
-        .filter(Boolean);
+      // Get categories for this section - handle list format (array of IDs)
+      let sectionCategories = [];
+      if (Array.isArray(categoriesData)) {
+        sectionCategories = categoriesData
+          .map(id => accessibleCategories.find(cat => cat.id === parseInt(id)))
+          .filter(Boolean);
+      }
 
       if (sectionCategories.length === 0) continue;
 

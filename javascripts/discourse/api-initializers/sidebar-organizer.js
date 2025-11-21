@@ -27,17 +27,32 @@ export default apiInitializer("1.8.0", (api) => {
     const allCategories = appCtrl.site.categories;
     const currentUser = api.getCurrentUser();
     
-    // Get categories to hide
-    const hiddenSlugs = settings.categories_to_hide
-      ? settings.categories_to_hide.split(",").map(s => s.trim())
-      : [];
+    // Get categories to hide - handle both list format (array of IDs) and legacy string format
+    let hiddenSlugs = [];
+    if (settings.categories_to_hide) {
+      if (Array.isArray(settings.categories_to_hide)) {
+        // New list format: array of category IDs, need to convert to slugs
+        hiddenSlugs = settings.categories_to_hide
+          .map(id => allCategories.find(cat => cat.id === parseInt(id)))
+          .filter(Boolean)
+          .map(cat => cat.slug);
+      } else {
+        // Legacy string format: comma-separated slugs
+        hiddenSlugs = settings.categories_to_hide.split(",").map(s => s.trim());
+      }
+    }
     
     // Filter categories based on user permissions and hidden list
+    // Note: site.categories is already filtered by Discourse based on current user permissions
     const accessibleCategories = allCategories.filter(cat => {
+      // Hide categories from the hidden list
       if (hiddenSlugs.includes(cat.slug)) return false;
-      if (!currentUser) return !cat.read_restricted;
-      // Category is accessible if not read_restricted, or user has permission
-      return true; // Discourse handles permissions in the category objects
+      
+      // For anonymous users, only show non-restricted categories
+      if (!currentUser && cat.read_restricted) return false;
+      
+      // For logged-in users, Discourse has already filtered the categories list
+      return true;
     });
 
     const customContainer = document.createElement("div");
@@ -53,16 +68,25 @@ export default apiInitializer("1.8.0", (api) => {
       if (!enabled) continue;
 
       const title = settings[`section_${i}_title`];
-      const categorySlugs = settings[`section_${i}_categories`];
+      const categoriesData = settings[`section_${i}_categories`];
       const defaultOpen = settings[`section_${i}_default_open`];
       
-      if (!categorySlugs || categorySlugs.trim() === "") continue;
+      if (!categoriesData) continue;
 
-      // Get categories for this section
-      const slugArray = categorySlugs.split(",").map(s => s.trim());
-      const sectionCategories = slugArray
-        .map(slug => accessibleCategories.find(cat => cat.slug === slug))
-        .filter(Boolean);
+      // Get categories for this section - handle both list format and legacy string format
+      let sectionCategories = [];
+      if (Array.isArray(categoriesData)) {
+        // New list format: array of category IDs
+        sectionCategories = categoriesData
+          .map(id => accessibleCategories.find(cat => cat.id === parseInt(id)))
+          .filter(Boolean);
+      } else if (typeof categoriesData === 'string' && categoriesData.trim() !== "") {
+        // Legacy string format: comma-separated slugs
+        const slugArray = categoriesData.split(",").map(s => s.trim());
+        sectionCategories = slugArray
+          .map(slug => accessibleCategories.find(cat => cat.slug === slug))
+          .filter(Boolean);
+      }
 
       if (sectionCategories.length === 0) continue;
 

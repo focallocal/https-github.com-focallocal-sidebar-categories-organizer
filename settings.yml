@@ -20,10 +20,9 @@ use_gradient_fade:
   description: "Use gradient fade on section headers (solid color if disabled)"
 
 categories_to_hide:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories to hide from sidebar completely"
+  type: string
+  description: "Category slugs to hide from sidebar completely (comma-separated, e.g., staff-only,archive)"
 
 default_view:
   default: "custom"
@@ -55,10 +54,9 @@ section_1_text_color:
   description: "Text color for section 1"
 
 section_1_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 1"
+  type: string
+  description: "Category slugs for section 1 (comma-separated, e.g., general,support,feedback)"
 
 section_1_show_subcategories:
   default: true
@@ -92,10 +90,9 @@ section_2_text_color:
   description: "Text color for section 2"
 
 section_2_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 2"
+  type: string
+  description: "Category slugs for section 2 (comma-separated)"
 
 section_2_show_subcategories:
   default: true
@@ -129,10 +126,9 @@ section_3_text_color:
   description: "Text color for section 3"
 
 section_3_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 3"
+  type: string
+  description: "Category slugs for section 3 (comma-separated)"
 
 section_3_show_subcategories:
   default: true
@@ -166,10 +162,9 @@ section_4_text_color:
   description: "Text color for section 4"
 
 section_4_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 4"
+  type: string
+  description: "Category slugs for section 4 (comma-separated)"
 
 section_4_show_subcategories:
   default: true
@@ -203,10 +198,9 @@ section_5_text_color:
   description: "Text color for section 5"
 
 section_5_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 5"
+  type: string
+  description: "Category slugs for section 5 (comma-separated)"
 
 section_5_show_subcategories:
   default: true
@@ -240,10 +234,9 @@ section_6_text_color:
   description: "Text color for section 6"
 
 section_6_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 6"
+  type: string
+  description: "Category slugs for section 6 (comma-separated)"
 
 section_6_show_subcategories:
   default: true
@@ -277,10 +270,9 @@ section_7_text_color:
   description: "Text color for section 7"
 
 section_7_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 7"
+  type: string
+  description: "Category slugs for section 7 (comma-separated)"
 
 section_7_show_subcategories:
   default: true
@@ -314,10 +306,9 @@ section_8_text_color:
   description: "Text color for section 8"
 
 section_8_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 8"
+  type: string
+  description: "Category slugs for section 8 (comma-separated)"
 
 section_8_show_subcategories:
   default: true
@@ -351,10 +342,9 @@ section_9_text_color:
   description: "Text color for section 9"
 
 section_9_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 9"
+  type: string
+  description: "Category slugs for section 9 (comma-separated)"
 
 section_9_show_subcategories:
   default: true
@@ -388,10 +378,9 @@ section_10_text_color:
   description: "Text color for section 10"
 
 section_10_categories:
-  type: list
-  list_type: category
   default: ""
-  description: "Categories for section 10"
+  type: string
+  description: "Category slugs for section 10 (comma-separated)"
 
 section_10_show_subcategories:
   default: true

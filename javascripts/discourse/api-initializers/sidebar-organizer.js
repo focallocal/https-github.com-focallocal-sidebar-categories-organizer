@@ -27,20 +27,10 @@ export default apiInitializer("1.8.0", (api) => {
     const allCategories = appCtrl.site.categories;
     const currentUser = api.getCurrentUser();
     
-    // Get categories to hide - handle both list format (array of IDs) and legacy string format
-    let hiddenSlugs = [];
-    if (settings.categories_to_hide) {
-      if (Array.isArray(settings.categories_to_hide)) {
-        // New list format: array of category IDs, need to convert to slugs
-        hiddenSlugs = settings.categories_to_hide
-          .map(id => allCategories.find(cat => cat.id === parseInt(id)))
-          .filter(Boolean)
-          .map(cat => cat.slug);
-      } else {
-        // Legacy string format: comma-separated slugs
-        hiddenSlugs = settings.categories_to_hide.split(",").map(s => s.trim());
-      }
-    }
+    // Get categories to hide
+    const hiddenSlugs = settings.categories_to_hide
+      ? settings.categories_to_hide.split(",").map(s => s.trim()).filter(s => s !== "")
+      : [];
     
     // Filter categories based on user permissions and hidden list
     // Note: site.categories is already filtered by Discourse based on current user permissions
@@ -68,25 +58,16 @@ export default apiInitializer("1.8.0", (api) => {
       if (!enabled) continue;
 
       const title = settings[`section_${i}_title`];
-      const categoriesData = settings[`section_${i}_categories`];
+      const categorySlugs = settings[`section_${i}_categories`];
       const defaultOpen = settings[`section_${i}_default_open`];
       
-      if (!categoriesData) continue;
+      if (!categorySlugs || categorySlugs.trim() === "") continue;
 
-      // Get categories for this section - handle both list format and legacy string format
-      let sectionCategories = [];
-      if (Array.isArray(categoriesData)) {
-        // New list format: array of category IDs
-        sectionCategories = categoriesData
-          .map(id => accessibleCategories.find(cat => cat.id === parseInt(id)))
-          .filter(Boolean);
-      } else if (typeof categoriesData === 'string' && categoriesData.trim() !== "") {
-        // Legacy string format: comma-separated slugs
-        const slugArray = categoriesData.split(",").map(s => s.trim());
-        sectionCategories = slugArray
-          .map(slug => accessibleCategories.find(cat => cat.slug === slug))
-          .filter(Boolean);
-      }
+      // Get categories for this section
+      const slugArray = categorySlugs.split(",").map(s => s.trim());
+      const sectionCategories = slugArray
+        .map(slug => accessibleCategories.find(cat => cat.slug === slug))
+        .filter(Boolean);
 
       if (sectionCategories.length === 0) continue;
 

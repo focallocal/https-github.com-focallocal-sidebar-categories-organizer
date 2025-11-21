@@ -1,14 +1,19 @@
 # Sidebar Categories Organizer
 
-A Discourse theme component that organizes sidebar categories into customizable collapsible sections with color-coded headers.
+A Discourse theme component that organizes sidebar categories into customizable collapsible color-coded sections with advanced features.
 
 ## Features
 
-- **Collapsible Category Sections**: Group categories into 4 custom sections
-- **Color Customization**: Set background and text colors for each section
-- **Toggle View**: Switch between custom sections and default Discourse categories list
-- **Persistent State**: Remembers which sections are open/closed per user
+- **10 Collapsible Sections**: Group categories into up to 10 custom sections
+- **Color Customization**: Set background and text colors for each section header
+- **Gradient Backgrounds**: Optional gradient fade effect (50% solid, 50% fade to transparent)
+- **Category Badges**: Optional colored squares matching category colors
+- **Subcategories Support**: Per-section toggle to show/hide subcategories (indented display)
+- **Category Hiding**: Hide specific categories from all views
+- **Bidirectional Toggle**: Switch between custom sections and default Discourse view (toggle button appears in both views)
+- **Persistent State**: Remembers which sections are open/closed and user's view preference
 - **Permission Aware**: Only shows categories users have access to
+- **Ungrouped Categories**: Automatically displays any uncategorized categories in a separate section
 - **Mobile Responsive**: Works on all device sizes
 
 ## Installation
@@ -24,18 +29,22 @@ A Discourse theme component that organizes sidebar categories into customizable 
 ### Global Settings
 
 - **Enable Sidebar Organizer**: Turn the custom view on/off
-- **Show Toggle Button**: Display gear icon to switch between views
+- **Show Toggle Button**: Display 📂 icon to switch between views (appears in both custom and default view headers)
+- **Show Category Badges**: Display colored squares next to category names
+- **Use Gradient Fade**: Enable gradient background effect on section headers (50% solid color, 50% fade to transparent)
+- **Categories to Hide**: Comma-separated category slugs to hide from all views (e.g., `staff,private`)
 - **Default View**: Choose which view loads by default (custom or default)
 
-### Section Settings (1-4)
+### Section Settings (1-10)
 
 Each section has:
 - **Enabled**: Toggle section on/off
 - **Title**: Section header text
-- **Background Color**: Color picker for section header
+- **Background Color**: Color picker for section header background
 - **Text Color**: Color picker for header text
 - **Categories**: Comma-separated category slugs (e.g., `general,support,feedback`)
-- **Default Open**: Whether section starts expanded
+- **Show Subcategories**: Toggle to show/hide subcategories for this section
+- **Default Open**: Whether section starts expanded or collapsed
 
 ## Finding Category Slugs
 
@@ -46,15 +55,42 @@ Category slugs are in the URL:
 ## Usage
 
 Once installed and configured:
-1. Categories will be grouped into your custom sections
-2. Click section headers to expand/collapse
-3. Click the gear icon (⚙️) next to "Categories" to toggle between custom and default views
-4. Your preferences are saved per-browser
+
+1. **Custom View**: Categories are grouped into your configured sections with colored headers
+2. **Expand/Collapse**: Click section headers to toggle content visibility
+3. **Toggle Views**: Click the 📂 icon in the header to switch between custom and default views
+   - In custom view: Toggle button appears in the custom view header
+   - In default view: Toggle button appears in the default "Categories" header
+4. **Subcategories**: When enabled per section, subcategories appear indented below parent categories
+5. **Category Badges**: Small colored squares (if enabled) show each category's color
+6. **Ungrouped Categories**: Any categories not assigned to sections appear in "Other Categories"
+7. **Preferences**: Your view choice and open/closed state are saved per browser
+
+## Advanced Features
+
+### Gradient Backgrounds
+When enabled, section headers use a smooth gradient:
+- 50% solid color (your chosen background color)
+- 50% fade to transparent
+- Creates a modern, sleek appearance
+
+### Category Hiding
+Specify category slugs to completely hide from the sidebar:
+- Useful for staff-only or deprecated categories
+- Applies to both custom and default views
+- Comma-separated list (e.g., `staff,private,archived`)
+
+### Subcategories
+- Toggle per section (not global)
+- Indented display with slightly smaller font
+- Reduced opacity for visual hierarchy
+- Maintains category badge colors
 
 ## Version
 
-- **Current**: 1.0.0
-- **Minimum Discourse**: 3.6.0
+- **Current**: 1.0.1
+- **Minimum Discourse**: 3.3.0
+- **Author**: Andy@Focallocal
 
 ## License
 

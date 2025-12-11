@@ -92,6 +92,45 @@ Specify category slugs to completely hide from the sidebar:
 - **Minimum Discourse**: 3.3.0
 - **Author**: Andy@Focallocal
 
+## Contributing
+
+We welcome contributions! Before submitting a PR, please run the pre-push checks.
+
+### Setup (First Time)
+
+```bash
+# Enable automated pre-push checks
+git config core.hooksPath .githooks
+
+# Install dependencies for linting (optional but recommended)
+pnpm install
+```
+
+### Before Every PR
+
+Run the quality check script:
+
+```powershell
+# Windows PowerShell
+.\pre-push-check.ps1
+
+# Auto-fix issues
+.\pre-push-check.ps1 -Fix
+```
+
+The script checks for:
+- ✅ CSS variables (no hardcoded colors)
+- ✅ Modern `rgb()` syntax (not `rgba()`)
+- ✅ Required `about.json` fields
+- ✅ Linting (stylelint, prettier, eslint)
+
+See `BEST_PRACTICES.md` for detailed Discourse theme development guidelines.
+
+### Commit Guidelines
+
+- Squash commits into a single commit before PR
+- Use descriptive commit messages
+
 ## License
 
 MIT License - See LICENSE file

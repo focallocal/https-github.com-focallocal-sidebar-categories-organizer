@@ -185,6 +185,10 @@ export default apiInitializer("1.8.0", (api) => {
           );
 
           subcategories.forEach(subcat => {
+            // Skip if this subcategory is already explicitly listed in the section
+            const alreadyInSection = sectionCategories.some(sc => sc.id === subcat.id);
+            if (alreadyInSection) return;
+            
             groupedCategorySlugs.add(subcat.slug);
             
             const subcatLink = document.createElement("a");
